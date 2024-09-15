@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import appleImage from '../assets/apple.jpeg';
-import bananaImage from '../assets/banana.jpeg';
-import tangerineImage from '../assets/tangerine.jpeg';
-import mangoImage from '../assets/mango.jpeg';
-import strawberryImage from '../assets/strawberry.jpeg';
-import kiwimage from '../assets/kiwi.jpeg';
-import watermelonImage from '../assets/watermelon.jpeg';
+import appleImage from '../../assets/apple.jpeg';
+import bananaImage from '../../assets/banana.jpeg';
+import tangerineImage from '../../assets/tangerine.jpeg';
+import mangoImage from '../../assets/mango.jpeg';
+import strawberryImage from '../../assets/strawberry.jpeg';
+import kiwiImage from '../../assets/kiwi.jpeg';
+import watermelonImage from '../../assets/watermelon.jpeg';
 
 const imageMap = {
   apple: appleImage,
@@ -13,7 +13,7 @@ const imageMap = {
   tangerine: tangerineImage,
   mango: mangoImage,
   strawberry: strawberryImage,
-  kiwi: kiwimage,
+  kiwi: kiwiImage,
   watermelon: watermelonImage
 };
 
