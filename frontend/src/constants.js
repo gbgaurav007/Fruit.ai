@@ -1,3 +1,3 @@
-const API_BASE_URL = 'http://127.0.0.1:5000/faqs/';
+const API_BASE_URL = 'https://fruit-ai-5i29.onrender.com/faqs';
 
 export default API_BASE_URL;

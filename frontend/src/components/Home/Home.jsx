@@ -1,28 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"
 
-/* Fruit.Ai 
-
-position: absolute;
-width: 296px;
-height: 38px;
-left: 39px;
-top: 54px;
-
-font-family: 'Dosis';
-font-style: normal;
-font-weight: 600;
-font-size: 30px;
-line-height: 38px;
-identical to box height 
-display: flex;
-align-items: center;
-text-align: center;
-
-color: #FFFFFF;
-
-*/
-
 export default function Home() {
     return (
         <div className="bg-gradient-to-tr from-sky-950 from-40% via-blue-900 via-75% to-blue-800 to-90% w-full h-screen ">
