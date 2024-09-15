@@ -1,0 +1,302 @@
+import React, { useState, useEffect } from 'react';
+import API_BASE_URL from '../../constants.js';
+import FAQCard from './FAQCard.jsx'
+import '../../App.css'
+
+const FAQPage = () => {
+    const [faqs, setFaqs] = useState([]);
+    const [showAddForm, setShowAddForm] = useState(false);
+    const [showEditForm, setShowEditForm] = useState(false);
+    const [editFaq, setEditFaq] = useState(null);
+    const [newFaq, setNewFaq] = useState({
+        fruitName: '',
+        question: '',
+        answer: ''
+    });
+
+    useEffect(() => {
+        const fetchFaqs = async () => {
+            try {
+                const response = await fetch(`${API_BASE_URL}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const data = await response.json();
+                if (data && data.faqs) {
+                    setFaqs(data.faqs);
+                } else {
+                    setFaqs([]);
+                }
+            } catch (error) {
+                console.error('Error fetching FAQs:', error);
+            }
+        };
+        fetchFaqs();
+    }, []);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setNewFaq({ ...newFaq, [name]: value });
+    };
+
+    const handleAddFormOpen = () => {
+        setNewFaq({
+            fruitName: '',
+            question: '',
+            answer: ''
+        });
+        setShowAddForm(true);
+    };
+
+    const handleAddFaq = async () => {
+
+        if (newFaq.fruitName === '' || newFaq.question === '' || newFaq.answer === '') {
+            alert("Please fill all the fields");
+            return;
+        }
+        try {
+            const response = await fetch(`${API_BASE_URL}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newFaq),
+            });
+
+            const data = await response.json();
+            if (data.code === 201) {
+                setFaqs([...faqs, data.created_faq]);
+                setShowAddForm(false);
+            }
+
+        } catch (error) {
+            console.error('Error creating FAQ:', error);
+        }
+    };
+
+    const handleEditFaq = async () => {
+
+        if (
+            editFaq.fruitName === faqs.find(faq => faq._id === editFaq._id).fruitName &&
+            editFaq.question === faqs.find(faq => faq._id === editFaq._id).question &&
+            editFaq.answer === faqs.find(faq => faq._id === editFaq._id).answer
+        ) {
+            alert("No changes were made.");
+            setShowEditForm(false);
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE_URL}${editFaq._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editFaq),
+            });
+
+            const data = await response.json();
+
+            if (data.code === 200) {
+                setFaqs(faqs.map(faq => faq._id === editFaq._id ? data.updated_faq : faq));
+                setShowEditForm(false);
+                setEditFaq(null);
+            }
+
+        } catch (error) {
+            console.error('Error updating FAQ:', error);
+        }
+    };
+
+    const handleDeleteFaq = async (faqId) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}${faqId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const data = await response.json();
+
+            if (data.code === 200) {
+                setFaqs(faqs.filter(faq => faq._id !== faqId));
+            }
+
+        } catch (error) {
+            console.error('Error deleting FAQ:', error);
+        }
+    };
+
+    return (
+        <div className="container mx-auto p-4">
+            <h1 className="text-2xl font-bold mb-4">FAQs</h1>
+            {faqs.length === 0 ? (
+                <p className="text-gray-500 mb-4">No FAQs to show</p>
+            ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {faqs.map((faq) => (
+                        <FAQCard
+                            key={faq._id}
+                            fruitName={faq.fruitName}
+                            question={faq.question}
+                            answer={faq.answer}
+                            onEdit={() => {
+                                setEditFaq(faq);
+                                setShowEditForm(true);
+                            }}
+                            onDelete={() => {
+                                if (window.confirm('Do you want to delete this FAQ?')) {
+                                    handleDeleteFaq(faq._id);
+                                }
+                            }}
+                        />
+                    ))}
+                </div>
+            )}
+
+            <button
+                onClick={handleAddFormOpen}
+                className="bg-green-500 text-white px-4 py-2 rounded mt-4 hover:bg-green-600"
+            >
+                + Add a New FAQ
+            </button>
+
+            {showAddForm && (
+                <AddFAQForm
+                    onClose={() => setShowAddForm(false)}
+                    onSubmit={handleAddFaq}
+                    faq={newFaq}
+                    onChange={handleInputChange}
+                />
+            )}
+
+            {showEditForm && (
+                <EditFAQForm
+                    onClose={() => setShowEditForm(false)}
+                    onSubmit={handleEditFaq}
+                    faq={editFaq}
+                    onChange={(e) => setEditFaq({ ...editFaq, [e.target.name]: e.target.value })}
+                />
+            )}
+        </div>
+    );
+};
+
+const AddFAQForm = ({ onClose, onSubmit, faq, onChange }) => (
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+        <div className="bg-white p-6 rounded shadow-lg w-80">
+            <h2 className="text-xl font-bold mb-8">Add a New FAQ</h2>
+            <form>
+                <div className='input-container'>
+                    <input
+                        type="text"
+                        name="fruitName"
+                        placeholder=" "
+                        value={faq.fruitName}
+                        onChange={onChange}
+                    />
+                    <label>Fruit Name</label>
+                </div>
+
+                <div className='input-container'>
+                    <input
+                        type="text"
+                        name="question"
+                        placeholder=" "
+                        value={faq.question}
+                        onChange={onChange}
+                    />
+                    <label>Question</label>
+                </div>
+
+                <div className='input-container'>
+                    <input
+                        type="text"
+                        name="answer"
+                        placeholder=" "
+                        value={faq.answer}
+                        onChange={onChange}
+                    />
+                    <label>Answer</label>
+                </div>
+
+                <button
+                    type="button"
+                    onClick={onSubmit}
+                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                >
+                    Done
+                </button>
+                <button
+                    type="button"
+                    onClick={onClose}
+                    className="ml-2 text-red-500 hover:text-red-400"
+                >
+                    Cancel
+                </button>
+            </form>
+        </div>
+    </div>
+);
+
+const EditFAQForm = ({ onClose, onSubmit, faq, onChange }) => (
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+        <div className="bg-white p-6 rounded shadow-lg w-80">
+            <h2 className="text-xl font-bold mb-8">Edit FAQ</h2>
+            <form>
+                <div className='input-container'>
+                    <input
+                        type="text"
+                        name="fruitName"
+                        placeholder=" "
+                        value={faq.fruitName}
+                        onChange={onChange}
+                    />
+                    <label>Fruit Name</label>
+                </div>
+
+                <div className='input-container'>
+                    <input
+                        type="text"
+                        name="question"
+                        placeholder=" "
+                        value={faq.question}
+                        onChange={onChange}
+                    />
+                    <label>Question</label>
+                </div>
+
+                <div className='input-container'>
+                    <input
+                        type="text"
+                        name="answer"
+                        placeholder=" "
+                        value={faq.answer}
+                        onChange={onChange}
+                    />
+                    <label>Answer</label>
+                </div>
+
+                <button
+                    type="button"
+                    onClick={onSubmit}
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                >
+                    Save Changes
+                </button>
+                <button
+                    type="button"
+                    onClick={onClose}
+                    className="ml-2 text-red-500 hover:text-red-400"
+                >
+                    Cancel
+                </button>
+            </form>
+        </div>
+    </div>
+);
+
+export default FAQPage;

@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.input-container {
+  position: relative;
+  min-width: 48%;
+  margin-bottom: 25px;
+  display: flex;
+  height: 50px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px 5px;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 1em;
+  background-color: #f0f0f0;
+  transition: border-color 0.3s, background-color 0.3s;
+  color: #333;
+}
+
+.input-container input:focus {
+  outline: none;
+  border-bottom-color: #6c63ff;
+  background-color: #e7e7e7;
+}
+
+.input-container input:focus+label,
+.input-container input:not(:placeholder-shown)+label {
+  top: -10px;
+  font-size: 0.75em;
+  color: #6c63ff;
+}
+
+.input-container label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.2s;
+  background-color: transparent;
+  padding: 0 5px;
+  pointer-events: none;
+  color: #aaa;
+}

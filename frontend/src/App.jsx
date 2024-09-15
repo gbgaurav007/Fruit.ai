@@ -4,6 +4,7 @@ import './App.css'
 import Home from './components/Home/Home';
 import Translator from './components/Translator/Translator';
 import SignUp from './components/SignUp/SignUp';
+import FAQPage from './components/Faq/FAQPage';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
             <Route path='/signup' element= {<SignUp/>} />
             <Route path='/home' element={<Home />} />
             <Route path='/translator' element={<Translator />} />
+            <Route path='/faq' element={<FAQPage />} />
           </Routes>
         </Router>
       </div>

@@ -25,8 +25,8 @@ color: #FFFFFF;
 
 export default function Home() {
     return (
-        <div className="bg-gradient-to-r from-custom-blue-2 via-custom-blue-4 via-custom-blue-5 via-custom-blue-3 to-custom-blue-2 w-full h-screen ">
-            <div className="font-dosis flex justify-center pt-4 text-5xl font-semibold text-white">Fruit.Ai</div>
+        <div className="bg-gradient-to-tr from-sky-950 from-40% via-blue-900 via-75% to-blue-800 to-90% w-full h-screen ">
+            <div className="font-dosis flex justify-center pt-4 text-5xl font-semibold text-transparent bg-gradient-to-tr bg-clip-text from-sky-300 via-pink-300 to-red-500">Fruit.Ai</div>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 items-center pt-10 p-4">
 
             <Link to="/chatbot" className="bg-green-400 rounded-lg text-white h-40 flex items-center justify-center">
