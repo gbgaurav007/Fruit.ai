@@ -43,7 +43,7 @@ export default function Login() {
                                     type="email"
                                     required
                                     autoComplete="email"
-                                    placeholder="user123"
+                                    placeholder="user123@gmail.com"
                                     value={userId}
                                     className="block w-full text-sm rounded-lg border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2.5"
                                     onChange={(e) => setUserId(e.target.value)}
