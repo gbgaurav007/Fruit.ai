@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* 
+body {
+    @apply flex items-center justify-center min-h-screen bg-blue-500 p-5;
+}
+
+.container {
+    @apply w-full bg-white p-6 shadow-lg rounded-lg max-w-xl;
+}
+
+.text-input {
+    @apply flex border-b border-gray-300;
+}
+
+textarea {
+    @apply h-64 w-full resize-none border-none outline-none bg-transparent text-lg p-4;
+}
+
+button {
+    @apply w-full py-3 mt-5 text-white bg-blue-600 rounded-md;
+} */
