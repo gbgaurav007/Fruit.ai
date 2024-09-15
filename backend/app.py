@@ -8,7 +8,7 @@ load_dotenv()
 
 app = Flask(__name__)
 #CORS(app, supports_credentials=True)
-CORS(app, resources={r"/*": {"origins": "https://fruitai-indol.vercel.app"}})
+CORS(app, resources={r"/*": {"origins": "https://fruit-1pgjnik5v-gbgaurav007s-projects.vercel.app"}})
 
 init_db(app)
 
