@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import API_BASE_URL from '../../constants.js';
 import FAQCard from './FAQCard.jsx'
 import '../../App.css'
+import { Link } from 'react-router-dom';
 
 const FAQPage = () => {
     const [faqs, setFaqs] = useState([]);
@@ -17,7 +18,7 @@ const FAQPage = () => {
     useEffect(() => {
         const fetchFaqs = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}`, {
+                const response = await fetch(`${API_BASE_URL}/faqs/`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -57,7 +58,7 @@ const FAQPage = () => {
             return;
         }
         try {
-            const response = await fetch(`${API_BASE_URL}`, {
+            const response = await fetch(`${API_BASE_URL}/faqs/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,7 +90,7 @@ const FAQPage = () => {
         }
 
         try {
-            const response = await fetch(`${API_BASE_URL}${editFaq._id}`, {
+            const response = await fetch(`${API_BASE_URL}/faqs/${editFaq._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -112,7 +113,7 @@ const FAQPage = () => {
 
     const handleDeleteFaq = async (faqId) => {
         try {
-            const response = await fetch(`${API_BASE_URL}${faqId}`, {
+            const response = await fetch(`${API_BASE_URL}/faqs/${faqId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -131,10 +132,21 @@ const FAQPage = () => {
     };
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">FAQs</h1>
+        <div className="min-h-screen flex flex-col items-center bg-gradient-to-tr from-sky-950 from-40% via-blue-900 via-75% to-blue-800 to-90% p-8">
+
+            <div className="absolute md:top-12 md:left-12 top-4 left-6 hover:scale-110">
+                <Link to="/home" className='flex flex-row'>
+                    <img
+                        src='back.png'
+                        alt="Back"
+                        className="md:w-10 md:h-9 w-8 h-7"
+                    />
+                </Link>
+            </div>
+
+            <h1 className="text-4xl font-dosis md:text-5xl font-bold text-transparent bg-gradient-to-tr from-orange-400 via-orange-500 to-orange-600 bg-clip-text mb-6 text-center pt-10">FAQs</h1>
             {faqs.length === 0 ? (
-                <p className="text-gray-500 mb-4">No FAQs to show</p>
+                <p className="text-white text-xl mb-4 text-center">No FAQs to show!</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {faqs.map((faq) => (
@@ -186,9 +198,9 @@ const FAQPage = () => {
 };
 
 const AddFAQForm = ({ onClose, onSubmit, faq, onChange }) => (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-        <div className="bg-white p-6 rounded shadow-lg w-80">
-            <h2 className="text-xl font-bold mb-8">Add a New FAQ</h2>
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-40">
+        <div className="bg-gradient-to-tr from-blue-200 from-40% via-blue-300 via-75% to-blue-300 to-90% p-6 rounded shadow-lg w-80">
+            <h2 className="text-xl font-bold mb-8 text-center">Add a New FAQ</h2>
             <form>
                 <div className='input-container'>
                     <input
@@ -243,9 +255,9 @@ const AddFAQForm = ({ onClose, onSubmit, faq, onChange }) => (
 );
 
 const EditFAQForm = ({ onClose, onSubmit, faq, onChange }) => (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-        <div className="bg-white p-6 rounded shadow-lg w-80">
-            <h2 className="text-xl font-bold mb-8">Edit FAQ</h2>
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-40">
+        <div className="bg-gradient-to-tr from-blue-200 from-40% via-blue-300 via-75% to-blue-300 to-90% p-6 rounded shadow-lg w-80">
+            <h2 className="text-xl font-bold mb-8 text-center">Edit FAQ</h2>
             <form>
                 <div className='input-container'>
                     <input
