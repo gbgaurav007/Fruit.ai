@@ -3,7 +3,7 @@
 Fruit.ai is a health management platform designed to help users gain insights into various fruits. The platform allows users to contribute and manage FAQs related to different fruits, providing helpful information on nutrition, benefits, and more. It also includes an integrated translator and chatbot for a more interactive and accessible user experience. Built using React and Vite for the frontend and Flask for the backend, it connects to a MongoDB database for persistent storage.
 
 
-## Deployed Application
+### Deployed Application
 
 You can access the live version of Fruit.ai at:
 
