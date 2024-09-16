@@ -41,7 +41,7 @@ function Translator() {
     };
 
     return (
-        <div className="bg-gradient-to-tr from-sky-950 from-40% via-blue-900 via-75% to-blue-800 to-90% flex flex-col">
+        <div className="bg-gradient-to-tr from-sky-950 from-40% via-blue-900 via-75% to-blue-800 to-90% flex flex-col min-h-screen">
 
             <div className="absolute md:top-12 md:left-12 top-4 left-6 hover:scale-110">
                 <Link to="/home" className='flex flex-row'>
@@ -53,11 +53,11 @@ function Translator() {
                 </Link>
             </div>
 
-            <div className="p-10 mt-20 font-dosis md:text-5xl text-4xl font-bold text-transparent bg-gradient-to-tr bg-clip-text from-yellow-300 via-rose-500 to-red-600">
+            <div className="p-10 mt-20 font-dosis md:text-5xl text-4xl font-bold text-transparent bg-gradient-to-tr bg-clip-text from-yellow-300 via-rose-500 to-red-600 text-center">
                 Translator
             </div>
 
-            <div className="flex items-center justify-center min-h-screen p-5">
+            <div className="flex items-center justify-center p-6">
                 <div className="w-full bg-white p-6 shadow-lg rounded-lg max-w-xl">
                     <div className="flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0 sm:space-x-4">
                         <div className="border border-gray-300 rounded-md w-full sm:w-1/2">
