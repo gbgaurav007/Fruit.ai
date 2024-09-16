@@ -6,6 +6,7 @@ import Translator from './components/Translator/Translator';
 import SignUp from './components/SignUp/SignUp';
 import FAQPage from './components/Faq/FAQPage';
 import ChatbotApp from './components/ChatBot/ChatBotApp';
+import AboutPage from './components/About/About';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Route path='/translator' element={<Translator />} />
             <Route path='/faq' element={<FAQPage />} />
             <Route path='/chatbot' element={<ChatbotApp />} />
+            <Route path='/about' element={<AboutPage />} />
           </Routes>
         </Router>
       </div>
