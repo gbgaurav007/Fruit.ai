@@ -6,6 +6,9 @@ export default {
       blur: {
         xs: '2px',
       },
+      scale: {
+        102: '1.02'
+      },
       fontFamily: {
         dosis: ["Dosis", "sans-serif"],
       },
