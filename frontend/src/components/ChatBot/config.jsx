@@ -1,6 +1,6 @@
 import { createChatBotMessage } from "react-chatbot-kit";
 import FruitDetails from "./FruitDetails";
-import FruitOptions from "./fruitOptions";
+import FruitOption from "./FruitOption";
 
 const config = {
   botName: "FruitBot",
@@ -12,7 +12,7 @@ const config = {
   widgets: [
     {
       widgetName: "fruitOptions",
-      widgetFunc: (props) => <FruitOptions {...props} />,
+      widgetFunc: (props) => <FruitOption {...props} />,
     },
     {
       widgetName: "fruitDetails",

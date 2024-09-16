@@ -1,6 +1,6 @@
 import React from "react";
 
-const FruitOptions = (props) => {
+const FruitOption = (props) => {
     const fruits = [
         { name: "Apple", handler: () => props.actionProvider.handleFruitDetails("Apple"), id: 1 },
         { name: "Banana", handler: () => props.actionProvider.handleFruitDetails("Banana"), id: 2 },
@@ -20,4 +20,4 @@ const FruitOptions = (props) => {
     return <div className="flex flex-wrap gap-4">{fruitMarkup}</div>;
 };
 
-export default FruitOptions;
+export default FruitOption;
