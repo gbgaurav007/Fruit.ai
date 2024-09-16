@@ -3,8 +3,25 @@ import API_BASE_URL from '../../constants.js';
 import FAQCard from './FAQCard.jsx'
 import '../../App.css'
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const FAQPage = () => {
+
+    useEffect(() => {
+        toast.info("Please wait, it may take up to 50 seconds to load FAQs.", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            style: {
+                color: 'black'
+            }
+        });
+    }, []);
+    
     const [faqs, setFaqs] = useState([]);
     const [showAddForm, setShowAddForm] = useState(false);
     const [showEditForm, setShowEditForm] = useState(false);
