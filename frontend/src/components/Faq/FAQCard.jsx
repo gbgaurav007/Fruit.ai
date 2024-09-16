@@ -23,8 +23,8 @@ const FAQCard = ({ fruitName, question, answer, onEdit, onDelete }) => {
 
   return (
     <div
-      className={`relative bg-white shadow-lg rounded-lg p-6 mb-8 transition-transform transform ${
-        hovered ? 'scale-105 shadow-xl' : 'scale-100'
+      className={`relative bg-white shadow-lg rounded-lg p-6 mb-8 transition-transform transform cursor-pointer ${
+        hovered ? 'scale-102 shadow-xl bg-opacity-90' : 'scale-100'
       }`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
