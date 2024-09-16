@@ -1,4 +1,5 @@
 import { ChatBubbleBottomCenterIcon, LanguageIcon, QuestionMarkCircleIcon, HeartIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom';
 
 const features = [
     {
@@ -29,10 +30,19 @@ const features = [
 
 export default function AboutPage() {
     return (
-        <div className="bg-gradient-to-tr from-sky-950 via-blue-950 to-blue-900 sm:py-16 pb-10 pt-10 h-max">
+        <div className="bg-gradient-to-tr from-sky-950 via-blue-950 to-blue-900 sm:py-16 pb-10 pt-10 h-max min-h-screen">
+            <div className="absolute md:top-12 md:left-12 top-4 left-6 hover:scale-110">
+                <Link to="/home" className='flex flex-row'>
+                    <img
+                        src='back.png'
+                        alt="Back"
+                        className="md:w-10 md:h-9 w-8 h-7"
+                    />
+                </Link>
+            </div>
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:text-center">
-                    <h2 className="text-base font-semibold leading-7 text-indigo-400">About Fruit.ai</h2>
+                    <h2 className="text-base font-semibold leading-7 text-indigo-400 mt-5">About Fruit.ai</h2>
                     <p className="mt-2 text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl">
                         Your Personal Health and Nutrition Manager
                     </p>
